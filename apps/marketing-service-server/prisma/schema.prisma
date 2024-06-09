@@ -1,0 +1,77 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Email {
+  body      String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  recipient String?
+  subject   String?
+  updatedAt DateTime @updatedAt
+}
+
+model Conversion {
+  createdAt DateTime  @default(now())
+  date      DateTime?
+  id        String    @id @default(cuid())
+  name      String?
+  updatedAt DateTime  @updatedAt
+}
+
+model Funnel {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  step        Int?
+  updatedAt   DateTime @updatedAt
+}
+
+model Log {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  message   String?
+  status    String?
+  typeField String?
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  content   String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  status    String?
+  typeField String?
+  updatedAt DateTime @updatedAt
+}
+
+model WhatsAppMessage {
+  createdAt       DateTime @default(now())
+  id              String   @id @default(cuid())
+  message         String?
+  recipientNumber String?
+  status          String?
+  updatedAt       DateTime @updatedAt
+}
+
+model PushNotification {
+  content   String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  recipient String?
+  title     String?
+  updatedAt DateTime @updatedAt
+}
+
+model VendorConfig {
+  configData Json?
+  createdAt  DateTime @default(now())
+  id         String   @id @default(cuid())
+  name       String?
+  updatedAt  DateTime @updatedAt
+}
